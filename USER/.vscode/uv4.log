@@ -1,0 +1,72 @@
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\keil\ARM\ARMCC\Bin'
+Build target 'MPU6050'
+compiling usmart_config.c...
+compiling mpu6050.c...
+compiling main.c...
+main.c(110): warning:  #223-D: function "LCD_Init" declared implicitly
+      LCD_Init();                                     //初始化LCD
+main.c(112): error:  #20: identifier "POINT_COLOR" is undefined
+      POINT_COLOR = RED;                              //设置字体为红色
+main.c(113): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 50, 200, 16, 16, "ELITE STM32");
+main.c(113): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 50, 200, 16, 16, "ELITE STM32");
+main.c(113): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 50, 200, 16, 16, "ELITE STM32");
+main.c(114): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 70, 200, 16, 16, "MPU6050 TEST");
+main.c(114): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 70, 200, 16, 16, "MPU6050 TEST");
+main.c(114): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 70, 200, 16, 16, "MPU6050 TEST");
+main.c(115): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 90, 200, 16, 16, "ATOM@ALIENTEK");
+main.c(115): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 90, 200, 16, 16, "ATOM@ALIENTEK");
+main.c(115): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 90, 200, 16, 16, "ATOM@ALIENTEK");
+main.c(116): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 110, 200, 16, 16, "2015/1/17");
+main.c(116): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 110, 200, 16, 16, "2015/1/17");
+main.c(116): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 110, 200, 16, 16, "2015/1/17");
+main.c(119): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+          LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 Error");
+main.c(119): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+          LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 Error");
+main.c(119): error:  #165: too few arguments in function call
+          LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 Error");
+main.c(124): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 OK");
+main.c(124): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 OK");
+main.c(124): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 130, 200, 16, 16, "MPU6050 OK");
+main.c(125): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 150, 200, 16, 16, "KEY0:UPLOAD ON/OFF");
+main.c(125): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 150, 200, 16, 16, "KEY0:UPLOAD ON/OFF");
+main.c(125): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 150, 200, 16, 16, "KEY0:UPLOAD ON/OFF");
+main.c(127): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 170, 200, 16, 16, "UPLOAD ON ");
+main.c(127): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 170, 200, 16, 16, "UPLOAD ON ");
+main.c(127): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 170, 200, 16, 16, "UPLOAD ON ");
+main.c(128): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 200, 200, 16, 16, " Temp:    . C");
+main.c(128): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 200, 200, 16, 16, " Temp:    . C");
+main.c(128): error:  #165: too few arguments in function call
+      LCD_ShowString(30, 200, 200, 16, 16, " Temp:    . C");
+main.c(129): error:  #167: argument of type "int" is incompatible with parameter of type "const u8 *"
+      LCD_ShowString(30, 220, 200, 16, 16, "Pitch:    . C");
+main.c(129): error:  #167: argument of type "char *" is incompatible with parameter of type "u8"
+      LCD_ShowString(30, 220, 200, 16, 16, "Pitch:    . C");
+main.c: 1 warning, 30 errors
+compiling inv_mpu.c...
+"..\OBJ\MPU6050.axf" - 30 Error(s), 1 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:01

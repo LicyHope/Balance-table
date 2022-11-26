@@ -1,0 +1,137 @@
+#include "led.h"
+#include "delay.h"
+#include "sys.h"
+#include "lcd.h"
+#include "usart.h"
+#include "mpu6050.h"
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h"
+#include "lcd_init.h"
+
+int main(void)
+{
+    float pitch, roll, yaw;    //欧拉角
+    short aacx, aacy, aacz;    //加速度传感器原始数据
+    short gyrox, gyroy, gyroz; //陀螺仪原始数据
+
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+    uart_init(115200);                              //串口初始化为115200
+    delay_init();                                   //延时初始化
+    LED_Init();                                     //初始化与LED连接的硬件接口
+    MPU_Init();
+    LCD_Init();
+    LCD_Fill(0, 0, 140, 140, WHITE);
+    LCD_ShowString(0, 0, "roll:", DARKBLUE, WHITE, 16, 0);
+    LCD_ShowString(0, 20, "pitch:", DARKBLUE, WHITE, 16, 0);
+    LCD_ShowString(0, 40, "yaw:", DARKBLUE, WHITE, 16, 0);
+	LCD_ShowString(0,80,"Hi,Girl!",BLUE,WHITE,16,0);
+    while (mpu_dmp_init() != 0)
+        ;
+    while (1)
+    { // LED =~LED;
+
+        while (mpu_dmp_get_data(&pitch, &roll, &yaw) != 0)
+            ;
+        // temp = MPU_Get_Temperature();                             //得到温度值
+        MPU_Get_Accelerometer(&aacx, &aacy, &aacz); //得到加速度传感器数据
+        MPU_Get_Gyroscope(&gyrox, &gyroy, &gyroz);  //得到陀螺仪数据
+        
+        //LCD显示三个角度
+        if (roll < 0)
+        {
+			LED = 0;
+            roll = -roll;
+            LCD_ShowChar(50, 0, '-', BLUE, WHITE, 16, 0);
+        }
+        else
+        {	LED = 1;
+            LCD_ShowChar(50, 0, ' ', BLUE, WHITE, 16, 0);
+            
+        }
+
+        LCD_ShowFloatNum1(60,0,roll,5,BLUE,WHITE,16);
+        if (pitch < 0)
+        {
+            pitch = -pitch;
+            LCD_ShowChar(50, 20, '-', BLUE, WHITE, 16, 0);
+        }
+        else
+        {
+            LCD_ShowChar(50, 20, ' ', BLUE, WHITE, 16, 0);
+            
+        }
+        
+        LCD_ShowFloatNum1(60,20,pitch,4,BLUE,WHITE,16);
+        if (yaw < 0)
+        {
+            yaw = -yaw;
+            LCD_ShowChar(50, 40, '-', BLUE, WHITE, 16, 0);
+        }
+        else
+        {
+            LCD_ShowChar(50, 40, ' ', BLUE, WHITE, 16, 0);
+            
+        }
+        
+        LCD_ShowFloatNum1(60,40,yaw,5,BLUE,WHITE,16);
+
+        printf("roll:%.2f pitch:%.2f yaw:%.2f \r\n", roll, pitch, yaw);
+        if (roll > 0)
+        {
+            LED = 0;
+        }
+        else
+        {
+            LED = 1;
+        }
+
+        delay_ms(400);
+        /*if (temp < 0)
+            {
+                LCD_ShowChar();
+                LCD_ShowChar(30 + 48, 200, '-', 16, 0); //显示负号
+                temp = -temp;                           //转为正数
+            }
+            else
+                LCD_ShowChar(30 + 48, 200, ' ', 16, 0);       //去掉负号
+            LCD_ShowNum(30 + 48 + 8, 200, temp / 100, 3, 16); //显示整数部分
+            LCD_ShowNum(30 + 48 + 40, 200, temp % 10, 1, 16); //显示小数部分
+            */
+        // temp = pitch * 10;
+        // if (temp < 0)
+        // {
+        //     LCD_ShowChar(10, 10, '-', BLUE, WHITE, 16, 0); //显示负号
+        //     temp = -temp;                                  //转为正数
+        // }
+        // else
+        //     LCD_ShowChar(10, 20, ' ', BLUE, WHITE, 16, 0); //去掉负号
+
+        // LCD_ShowIntNum(12, 20, temp / 10, 1, BLUE, WHITE, 20); //显示整数部分
+        // // LCD_ShowNum(10,10,temp / 10, 3, 16);  //显示整数部分
+        // LCD_ShowIntNum(14, 20, temp % 10, 1, BLUE, WHITE, 20); //显示小数部分
+        // // LCD_ShowNum(30 + 48 + 40, 220, temp % 10, 1, 16); //显示小数部分
+
+        // temp = roll * 10;
+        // if (temp < 0)
+        // {
+        //     LCD_ShowChar(10, 40, '-', BLUE, WHITE, 16, 0); //显示负号
+        //     temp = -temp;                                  //转为正数
+        // }
+        // else
+        //     LCD_ShowChar(10, 40, ' ', BLUE, WHITE, 16, 0);     //去掉负号
+        // LCD_ShowIntNum(12, 40, temp / 10, 1, BLUE, WHITE, 20); //显示整数部分
+        // LCD_ShowIntNum(14, 40, temp % 10, 1, BLUE, WHITE, 20); //显示小数部分
+
+        // temp = yaw * 10;
+        // if (temp < 0)
+        // {
+        //     LCD_ShowChar(10, 60, '-', BLUE, WHITE, 16, 0); //显示负号
+        //     temp = -temp;                                  //转为正数
+        // }
+        // else
+        //     LCD_ShowChar(10, 60, ' ', BLUE, WHITE, 16, 0);     //去掉负号
+        // LCD_ShowIntNum(12, 60, temp / 10, 1, BLUE, WHITE, 20); //显示整数部分
+        // LCD_ShowIntNum(14, 60, temp % 10, 1, BLUE, WHITE, 20); //显示小数部分
+        LED0 = !LED0; // LED闪烁
+    }
+}

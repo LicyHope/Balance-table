@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "*.vue": "vue",
+        "usart.h": "c",
+        "mpu6050.h": "c",
+        "stdio.h": "c",
+        "usmart.h": "c",
+        "inv_mpu_dmp_motion_driver.h": "c",
+        "inv_mpu.h": "c",
+        "lcd_init.h": "c",
+        "lcd.h": "c",
+        "led.h": "c",
+        "key.h": "c",
+        "sys.h": "c",
+        "mpuiic.h": "c",
+        "delay.h": "c",
+        "lcdfont.h": "c",
+        "matrix_key.h": "c"
+    }
+}
